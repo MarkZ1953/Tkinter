@@ -46,8 +46,6 @@ class Layout_Calculadora:
         self.frame2.rowconfigure([0, 1, 2, 3, 4], weight=1)
 
     def crear_botones(self):
-        nom_botones = ["C", "/", "7", "8", "9", "*", "4", "5", "6", "-", "1", "2", "3", "+", "0", ".", "="]
-        c = 2
 
         botones = {
             "C": (0, 0),
