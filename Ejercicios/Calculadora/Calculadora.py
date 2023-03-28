@@ -26,6 +26,7 @@ class Calculadora(Layout_Calculadora):
         else:
             self.temp = f"{self.temp}{boton}"
             self.text_btons.set(self.temp)
+            #Comentario
 
 
 if __name__ == "__main__":
