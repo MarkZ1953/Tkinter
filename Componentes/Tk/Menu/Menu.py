@@ -1,4 +1,4 @@
-from tkinter import Tk, Menu
+from tkinter import Tk, Menu, Label
 
 
 class Menus(Tk):
@@ -8,6 +8,12 @@ class Menus(Tk):
         # Agregamos algunas configuraciones a la ventana principal
         self.title("Menus")
         self.geometry("300x300")
+        self.rowconfigure(0, weight=1)
+        self.columnconfigure(0, weight=1)
+
+        # Creamos una etiqueta
+        self.etiqueta = Label(self, text="¡Presiona alguna opcion!")
+        self.etiqueta.grid(row=0, column=0, sticky="news")
 
         # Llamamos al metodo para crear los menus
         self.crear_menus()
@@ -35,10 +41,10 @@ class Menus(Tk):
         barramenu.add_cascade(label="Archivo", menu=archivomenu)
 
         archivo_menu_textos_comandos = \
-            {"Nuevo": "funcion",
-             "Guardar": "funcion",
-             "Guardar Como...": "funcion",
-             "Salir": "funcion"
+            {"Nuevo": lambda: self.etiqueta.config(text="Presionaste : Nuevo"),
+             "Guardar": lambda: self.etiqueta.config(text="Presionaste : Guardar"),
+             "Guardar Como...": lambda: self.etiqueta.config(text="Presionaste : Guardar Como..."),
+             "Salir": self.destroy
              }
 
         # Desactivamos el tearoff del archivomenu
@@ -49,7 +55,7 @@ class Menus(Tk):
         # Creamos opciones de menu para archivomenu
         # Se pueden añadir metodos al gusto, que se ponen en el diccionario
         for texto, funcion in archivo_menu_textos_comandos.items():
-            archivomenu.add_cascade(label=texto)
+            archivomenu.add_cascade(label=texto, command=funcion)
             if i in [0, 2]:
                 archivomenu.add_separator()
             i += 1
